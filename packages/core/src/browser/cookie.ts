@@ -10,21 +10,15 @@ export interface CookieOptions {
 }
 
 export function setCookie(name: string, value: string, expireDelay: number, options?: CookieOptions) {
-  const date = new Date()
-  date.setTime(date.getTime() + expireDelay)
-  const expires = `expires=${date.toUTCString()}`
-  const sameSite = options && options.crossSite ? 'none' : 'strict'
-  const domain = options && options.domain ? `;domain=${options.domain}` : ''
-  const secure = options && options.secure ? ';secure' : ''
-  document.cookie = `${name}=${value};${expires};path=/;samesite=${sameSite}${domain}${secure}`
+  sessionStorage.setItem(name, value);
 }
 
 export function getCookie(name: string) {
-  return findCommaSeparatedValue(document.cookie, name)
+  return sessionStorage.getItem(name) || "";
 }
 
 export function deleteCookie(name: string, options?: CookieOptions) {
-  setCookie(name, '', 0, options)
+  sessionStorage.removeItem(name);
 }
 
 export function areCookiesAuthorized(options: CookieOptions): boolean {

@@ -12,8 +12,8 @@
     "build:esm": "rm -rf esm && tsc -p tsconfig.esm.json"
   },
   "dependencies": {
-    "@datadog/browser-core": "4.8.1",
-    "@datadog/browser-rum-core": "4.8.1"
+    "@datadog/browser-core": "../core",
+    "@datadog/browser-rum-core": "../rum-core"
   },
   "repository": {
     "type": "git",
